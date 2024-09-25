@@ -1,0 +1,8 @@
+.item {
+    width: 200px;height: 200px;
+}
+.meti{
+     width: 200px;height: 200px;
+     align-items: left;
+     gap: 10px;
+}

@@ -1,0 +1,23 @@
+{% extends "accounts/base.html" %}
+{% block title %}Home - Details - Ecommerce{% endblock %}
+{% block content %}
+    {% for product in products %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="{% url 'detail' product.pk %}">
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a>{{ product.name }}</a>
+                </h4>
+                <h5>{{ product.price }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}

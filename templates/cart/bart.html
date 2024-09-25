@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Shopping Cart</title>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to Cart</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item_id=item.id %}" class="btn btn-danger">Remove 1 "{{item.product.name}}" from cart</a>
+                    <a href="{% url 'remove_all_from_cart' item_id=item.id %}" class="btn btn-danger">Remove all "{{item.product.name}}s" from cart</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Your cart is empty.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total Price: ${{ total_price }}</h3>
+    <a class="nav-link" href="{% url 'home' %}">Home</a>
+</div>
+</body>
+</html>
